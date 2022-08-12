@@ -1,0 +1,7 @@
+buildType:
+  default: develop
+  choices:
+    debug:
+      short: develop
+      long: MbedOS develop profile
+      buildType: develop

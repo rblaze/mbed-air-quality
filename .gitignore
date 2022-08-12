@@ -1,0 +1,7 @@
+.mbedbuild
+.vscode/
+cmake_build/
+mbed-BME280/
+mbed-CCS811/
+mbed-os/
+mbed-text-lcd/
