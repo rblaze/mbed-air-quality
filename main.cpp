@@ -5,14 +5,14 @@
 #include <mbed.h>
 #include <mbed_events.h>
 
-I2C bus(PB_9, PB_8);
+I2C bus(MBED_CONF_APP_BUS_SDA, MBED_CONF_APP_BUS_SCL);
 BME280 bme280{bus, 0x77 << 1};
 CCS811 ccs811{bus, 0x5b << 1};
 TextLCD<text_lcd::ST7036i_20x2> lcd{bus, 0x78};
 DigitalOut led{LED1, 0};
 
-char bme_data[lcd.width()] = {0};
-char ccs_data[lcd.width()] = {0};
+char bme_data[lcd.width()] = "starting up, wait";
+char ccs_data[lcd.width()] = "micro meteo station";
 
 void updateBmeData();
 void readBmeData();
@@ -45,6 +45,8 @@ void printData() {
   lcd.moveCursorTo(0, 1);
   lcd.write(ccs_data, lcd.width());
   led = !led;
+  printf("%20s\n", bme_data);
+  printf("%20s\n\n", ccs_data);
 }
 
 void readCcsData() {
@@ -80,6 +82,8 @@ void readCcsData() {
 }
 
 int main() {
+  bus.frequency(100000);
+  lcd.init();
   lcd.displayControl(true, false, false);
 
   bme280.init();

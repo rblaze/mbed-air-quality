@@ -1,8 +1,24 @@
 {
-    "target_overrides": {
-        "*": {
-            "events.shared-dispatch-from-application": "true",
-            "events.shared-eventsize": 0
-        }
+  "config": {
+    "BUS_SCL": "I2C_SCL",
+    "BUS_SDA": "I2C_SDA"
+  },
+  "target_overrides": {
+    "*": {
+      "events.shared-dispatch-from-application": "true",
+      "events.shared-eventsize": 0
+    },
+    "NUCLEO_L073RZ": {
+      "app.BUS_SDA": "PB_9",
+      "app.BUS_SCL": "PB_8"
+    },
+    "NUCLEO_F103RB": {
+      "app.BUS_SDA": "PB_9",
+      "app.BUS_SCL": "PB_8"
+    },
+    "NUCLEO_L432KC": {
+      "app.BUS_SDA": "PB_7",
+      "app.BUS_SCL": "PB_6"
     }
+  }
 }
